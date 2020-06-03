@@ -1,67 +1,42 @@
-import * as React from 'react';
-import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesome } from '@expo/vector-icons';
-//import Ionicons from 'react-native-vector-icons/Ionicons';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation'
+import {createStackNavigator} from 'react-navigation-stack'
+import LoadingScreen from './screens/LoadingScreen'
+import HomeScreen from './screens/HomeScreen'
+import LoginScreen from './screens/LoginScreen'
+import RegisterScreen from './screens/RegisterScreen'
 
-function ProfileScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Profile!</Text>
-    </View>
-  );
-}
+import * as firebase from 'firebase'
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
+var firebaseConfig = {
+  apiKey: "AIzaSyD3mgabcLPHORVerk12owHJOe2YH7rSrD8",
+  authDomain: "wanderapp-5ede5.firebaseapp.com",
+  databaseURL: "https://wanderapp-5ede5.firebaseio.com",
+  projectId: "wanderapp-5ede5",
+  storageBucket: "wanderapp-5ede5.appspot.com",
+  messagingSenderId: "877989859615",
+  appId: "1:877989859615:web:87284603431a7da056602a"
+};
 
-function MessagesScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Messages!</Text>
-    </View>
-  );
-}
+firebase.initializeApp(firebaseConfig);
 
-const Tab = createBottomTabNavigator();
+const AppStack = createStackNavigator({
+  Home: HomeScreen
+})
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator
-      screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+const AuthStack = createStackNavigator({
+  Login: LoginScreen,
+  Register: RegisterScreen
+})
 
-            if (route.name === 'Profile') {
-              iconName = focused
-                ? 'user-circle'
-                : 'user-circle-o';
-            } else if (route.name === 'Home') {
-              iconName = focused ? 'paper-plane' : 'paper-plane-o';
-            } else if (route.name === 'Messages') {
-              iconName = focused ? 'commenting' : 'commenting-o';
-            }
-
-            // You can return any component that you like here!
-            return <FontAwesome name={iconName} size={size} color={color} />;
-          },
-        })}
-        tabBarOptions={{
-          activeTintColor: '#00d589',
-          inactiveTintColor: 'gray',
-        }}
-        >
-        <Tab.Screen name="Profile" component={ProfileScreen} />
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Messages" component={MessagesScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
-}
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      Loading: LoadingScreen,
+      App: AppStack,
+      Auth: AuthStack
+    },
+    {
+      initialRouteName: "Loading"
+    }
+  )
+)

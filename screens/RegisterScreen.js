@@ -4,7 +4,7 @@ import { Text, View, StyleSheet } from 'react-native';
 export default class RegisterScreen extends React.Component{
   render(){
     return(
-      <View styles={styles.container}>
+      <View style={styles.container}>
         <Text>Register Screen</Text>
       </View>
     )
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   }
-})
+});
