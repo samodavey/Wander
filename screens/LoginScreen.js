@@ -1,8 +1,13 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, LayoutAnimation } from 'react-native';
+import GradientButton from 'react-native-gradient-buttons';
 import * as firebase from 'firebase'
 
 export default class LoginScreen extends React.Component{
+
+  static navigationOptions = {
+    headerShown: false
+  };
 
   state = {
     email: "",
@@ -24,6 +29,19 @@ export default class LoginScreen extends React.Component{
   render() {
     return (
       <View style={styles.container}>
+        
+        <StatusBar barStyle="light-content"></StatusBar>
+
+        <Image 
+        source={require("../assets/authHeader.png")}
+        style={{marginTop: -100, marginLeft: -15}}>
+        </Image>
+
+        <Image 
+        source={require("../assets/authFooter.png")}
+        style={{position: "absolute", bottom: -185, right: -100}}>
+        </Image>
+
         <Text style={styles.greeting}>{'Hello again.\nWelcome Back.'}</Text>
 
         <View style={styles.errorMessage}>
@@ -57,6 +75,17 @@ export default class LoginScreen extends React.Component{
         <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
           <Text style={{color:"#FFF", fontWeight: "500"}}>Sign In</Text>
         </TouchableOpacity>
+
+        {/* <GradientButton
+        style={{marginHorizontal:30, marginTop: 10}}
+        text = "Sign In"
+        gradientBegin = "#020024"
+        gradientEnd= "#00d589"
+        gradientDirection = "diagnol"
+        height={60}
+        radius={15}
+        onPressAction={this.handleLogin}
+        ></GradientButton> */}
 
         <TouchableOpacity
         style={{alignSelf: "center", marginTop: 32}}
@@ -113,7 +142,7 @@ const styles = StyleSheet.create({
   button:{
     marginHorizontal: 30,
     backgroundColor: "#00d589",
-    borderRadius: 4,
+    borderRadius: 15,
     height: 52,
     alignItems: "center",
     justifyContent: "center"
