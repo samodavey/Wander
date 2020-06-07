@@ -27,6 +27,8 @@ export default class LoginScreen extends React.Component{
   };
 
   render() {
+    LayoutAnimation.easeInEaseOut();
+
     return (
       <View style={styles.container}>
         
@@ -34,12 +36,17 @@ export default class LoginScreen extends React.Component{
 
         <Image 
         source={require("../assets/authHeader.png")}
-        style={{marginTop: -100, marginLeft: -15}}>
+        style={{marginTop: -110, marginLeft: -15}}>
         </Image>
 
         <Image 
         source={require("../assets/authFooter.png")}
         style={{position: "absolute", bottom: -185, right: -100}}>
+        </Image>
+
+        <Image 
+        source={require("../assets/loginLogo.png")}
+        style={{marginTop:-110, alignSelf: "center", marginTop: -60}}>
         </Image>
 
         <Text style={styles.greeting}>{'Hello again.\nWelcome Back.'}</Text>
@@ -106,7 +113,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   greeting:{
-    marginTop:32,
+    marginTop: 5,
     fontSize: 18,
     fontWeight: "400",
     textAlign: "center"

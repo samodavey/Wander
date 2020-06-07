@@ -1,8 +1,13 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar } from 'react-native';
+import {Ionicons} from '@expo/vector-icons'
 import * as firebase from 'firebase'
 
 export default class RegisterScreen extends React.Component{
+
+  static navigationOptions = {
+    headerShown: false
+  };
 
   state = {
     name: "",
@@ -27,7 +32,29 @@ export default class RegisterScreen extends React.Component{
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.greeting}>{'Hello!\nSign up to get started.'}</Text>
+        
+        {/* Maybe add back button? */}
+
+        <StatusBar barStyle="light-content"></StatusBar>
+
+        <Image 
+        source={require("../assets/authHeader.png")}
+        style={{marginTop: -110, marginLeft: -15}}>
+        </Image>
+
+        <Image 
+        source={require("../assets/authFooter.png")}
+        style={{position: "absolute", bottom: -185, right: -100}}>
+        </Image>
+
+        <View style={{position: "absolute", top: 45, alignItems: "center", width: "100%"}}>
+          
+          <Text style={styles.greeting}>{'Hello!\nSign up to get started.'}</Text>
+
+          <TouchableOpacity style={styles.avatar}>
+            <Ionicons name="ios-add" size={40} color="#00d589" style={{marginTop:6, marginLeft:2}}></Ionicons>
+          </TouchableOpacity>
+        </View>
 
         <View style={styles.errorMessage}>
           {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
@@ -72,7 +99,7 @@ export default class RegisterScreen extends React.Component{
           <Text style={{color:"#FFF", fontWeight: "500"}}>Sign Up</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{alignSelf: "center", marginTop: 32}}>
+        <TouchableOpacity style={{alignSelf: "center", marginTop: 32}} onPress={() => this.props.navigation.navigate("Login")}>
           <Text style={{color: "#414959", fontSize: 13}}>
             Already have an account? <Text style={{fontWeight: "500", color: "#00d589"}}>Login</Text>
           </Text>
@@ -89,7 +116,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   greeting:{
-    marginTop:32,
+    marginTop: 5,
     fontSize: 18,
     fontWeight: "400",
     textAlign: "center"
@@ -129,6 +156,15 @@ const styles = StyleSheet.create({
     height: 52,
     alignItems: "center",
     justifyContent: "center"
+  },
+  avatar:{
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: "#E1E2E6",
+    marginTop:30,
+    justifyContent: "center",
+    alignItems: "center"
   }
 
 });
