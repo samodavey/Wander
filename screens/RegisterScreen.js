@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar } from 'react-native';
-import {Ionicons} from '@expo/vector-icons'
-import * as firebase from 'firebase'
+import {Ionicons} from '@expo/vector-icons';
+import * as firebase from 'firebase';
+import UserPermissions from '../Utilities/UserPermissions';
+import * as ImagePicker from 'expo-image-picker';
 
 export default class RegisterScreen extends React.Component{
 
@@ -10,11 +12,28 @@ export default class RegisterScreen extends React.Component{
   };
 
   state = {
-    name: "",
-    email: "",
-    password: "",
+    user: {
+      name: "",
+      email: "",
+      password: "",
+      avatar: null
+    },
     errorMessage: null
-  }
+  };
+
+  handlePickAvatar = async () => {
+    UserPermissions.getCameraPermission()
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3]
+    });
+
+    if(!result.cancelled){
+      this.setState({user: { ...this.state.user, avatar: result.uri} });
+    }
+  };
 
   handleSignUp = () => {
     firebase
@@ -26,7 +45,7 @@ export default class RegisterScreen extends React.Component{
       })
     })
     .catch(error => this.setState({errorMessage: error.message}));
-  }
+  };
 
 
   render() {
@@ -51,8 +70,14 @@ export default class RegisterScreen extends React.Component{
           
           <Text style={styles.greeting}>{'Hello!\nSign up to get started.'}</Text>
 
-          <TouchableOpacity style={styles.avatar}>
-            <Ionicons name="ios-add" size={40} color="#00d589" style={{marginTop:6, marginLeft:2}}></Ionicons>
+          <TouchableOpacity style={styles.avatarPlaceholder} onPress={this.handlePickAvatar}>
+            <Image source={{uri: this.state.user.avatar}} style={styles.avatar}/>
+            <Ionicons 
+            name="ios-add" 
+            size={40} 
+            color="#00d589" 
+            style={{marginTop:6, marginLeft:2}}>
+            </Ionicons>
           </TouchableOpacity>
         </View>
 
@@ -157,14 +182,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
+  avatarPlaceholder:{
+    width:100,
+    height:100,
+    backgroundColor: "#E1E2E6",
+    borderRadius: 50,
+    marginTop: 48,
+    justifyContent: "center",
+    alignItems: "center"
+  },
   avatar:{
+    position: "absolute",
     width: 100,
     height: 100,
     borderRadius: 50,
-    backgroundColor: "#E1E2E6",
-    marginTop:30,
-    justifyContent: "center",
-    alignItems: "center"
   }
-
 });

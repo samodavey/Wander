@@ -14,6 +14,7 @@ import MessagesScreen from './screens/MessagesScreen'
 import ProfileScreen from './screens/ProfileScreen'
 
 import * as firebase from 'firebase'
+import { Image } from 'react-native'
 
 // Need to privatise these keys!!!
 var firebaseConfig = {
@@ -36,19 +37,21 @@ const AppTabNavigator = createBottomTabNavigator(
     Profile: {
       screen: ProfileScreen,
       navigationOptions: {
-        tabBarIcon: ({tintColor}) => <Ionicons name="md-contact" size={28} color={tintColor}/>
+        tabBarIcon: ({tintColor}) => <Ionicons name="md-contact" size={30} color={tintColor}/>
       }
     },
     Home: {
       screen: HomeScreen,
       navigationOptions: {
-        tabBarIcon: ({tintColor}) => <Ionicons name="md-paper-plane" size={28} color={tintColor}/>
+         tabBarIcon: ({tintColor}) => <Ionicons name="md-paper-plane" size={30} color={tintColor}/>
+         //Maybe use the logo?
+         //tabBarIcon: ({tintColor}) => <Image source={require('./assets/mainIcon.png')} color={tintColor}></Image>
       }
     },
     Messages: {
       screen: MessagesScreen,
       navigationOptions: {
-        tabBarIcon: ({tintColor}) => <Ionicons name="ios-chatboxes" size={28} color={tintColor}/>
+        tabBarIcon: ({tintColor}) => <Ionicons name="ios-chatboxes" size={30} color={tintColor}/>
       }
     }
   },
@@ -61,10 +64,15 @@ const AppTabNavigator = createBottomTabNavigator(
   }
 )
 
-const AuthStack = createStackNavigator({
-  Register: RegisterScreen,
-  Login: LoginScreen
-})
+const AuthStack = createStackNavigator(
+  {
+  Login: LoginScreen,
+  Register: RegisterScreen
+  },
+  {
+    initialRouteName: "Register"
+  } 
+);
 
 export default createAppContainer(
   createSwitchNavigator(
