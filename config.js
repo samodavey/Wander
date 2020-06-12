@@ -1,4 +1,4 @@
-var FirebaseKeys = {
+const firebaseConfig = {
     apiKey: "AIzaSyD3mgabcLPHORVerk12owHJOe2YH7rSrD8",
     authDomain: "wanderapp-5ede5.firebaseapp.com",
     databaseURL: "https://wanderapp-5ede5.firebaseio.com",
