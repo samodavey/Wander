@@ -7,23 +7,24 @@ import * as ImagePicker from 'expo-image-picker';
 //import { Dropdown } from 'react-native-material-dropdown';
 
 
+//NEED TO IMPLEMENT GENDER, TERMS & CONDITIONS
+//FIX MAJOR & MINOR BUGS
+
 export default class RegisterScreen extends React.Component{
 
   static navigationOptions = {
     headerShown: false
   };
-
+  //Avatar throws an error, unsure why! Still works though
   state = {
     user: {
       name: "",
       email: "",
       password: "",
-      //Fix it!
-      //Works on Android for some reason? But fix the emulator error
-      //avatar: null
+      avatar: null
     },
     errorMessage: null,
-    switchValue: false
+    //switchValue: false
   };
 
   handlePickAvatar = async () => {
@@ -87,7 +88,7 @@ export default class RegisterScreen extends React.Component{
           <Text style={styles.greeting}>{'Hello!\nSign up to get started.'}</Text>
 
           <TouchableOpacity style={styles.avatarPlaceholder} onPress={this.handlePickAvatar}>
-            <Image source={{uri:this.state.user.avatar}} style={styles.avatar}/>
+            <Image source={{uri: this.state.user.avatar}} style={styles.avatar}/>
             <Ionicons 
             name="ios-add" 
             size={40} 
@@ -142,7 +143,7 @@ export default class RegisterScreen extends React.Component{
             label='Select your gender'
             data={data}
             />
-          </View> */}
+          </View>
 
           <View style={{marginTop: 32}}>
             <Text style={styles.inputTitle}>I agree to the terms & conditions</Text>
@@ -153,7 +154,7 @@ export default class RegisterScreen extends React.Component{
             onValueChange = {this.toggleTerms}
             value = {this.state.switchValue}
             ></Switch>
-          </View>
+          </View> */}
 
         </View>
 
@@ -232,6 +233,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 100,
     height: 100,
-    borderRadius: 50,
+    borderRadius: 50
   }
 });
