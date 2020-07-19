@@ -33,37 +33,44 @@ var firebaseConfig = FirebaseKeys;
 //   firebase.initializeApp(firebaseConfig);
 // }
 
-const AppTabNavigator = createBottomTabNavigator(
+const AppContainer = createStackNavigator(
   {
-    Profile: {
-      screen: ProfileScreen,
-      navigationOptions: {
-        tabBarIcon: ({tintColor}) => <Ionicons name="md-contact" size={30} color={tintColor}/>
+    default: createBottomTabNavigator(
+      {
+        Profile: {
+          screen: ProfileScreen,
+          navigationOptions: {
+            tabBarIcon: ({tintColor}) => <Ionicons name="md-contact" size={30} color={tintColor}/>
+          }
+        },
+        Home: {
+          screen: HomeScreen,
+          navigationOptions: {
+             tabBarIcon: ({tintColor}) => <Ionicons name="md-paper-plane" size={30} color={tintColor}/>
+             //Maybe use the logo?
+             //tabBarIcon: ({tintColor}) => <Image source={require('./assets/mainIcon.png')} color={tintColor}></Image>
+          }
+        },
+        Messages: {
+          screen: MessagesScreen,
+          navigationOptions: {
+            tabBarIcon: ({tintColor}) => <Ionicons name="ios-chatboxes" size={30} color={tintColor}/>
+          }
+        }
+      },
+      {
+        tabBarOptions: {
+          activeTintColor: "#00d589",
+          inactiveTintColor: "#B8BBC4",
+          showLabel: false
+        },
       }
-    },
-    Home: {
-      screen: HomeScreen,
-      navigationOptions: {
-         tabBarIcon: ({tintColor}) => <Ionicons name="md-paper-plane" size={30} color={tintColor}/>
-         //Maybe use the logo?
-         //tabBarIcon: ({tintColor}) => <Image source={require('./assets/mainIcon.png')} color={tintColor}></Image>
-      }
-    },
-    Messages: {
-      screen: MessagesScreen,
-      navigationOptions: {
-        tabBarIcon: ({tintColor}) => <Ionicons name="ios-chatboxes" size={30} color={tintColor}/>
-      }
-    }
-  },
-  {
-    tabBarOptions: {
-      activeTintColor: "#00d589",
-      inactiveTintColor: "#B8BBC4",
-      showLabel: false
-    },
+    ),
   }
 )
+
+// const AppTabNavigator = 
+// );
 
 const AuthStack = createStackNavigator(
   {
@@ -79,7 +86,7 @@ export default createAppContainer(
   createSwitchNavigator(
     {
       Loading: LoadingScreen,
-      App: AppTabNavigator,
+      App: AppContainer,
       Auth: AuthStack
     },
     {

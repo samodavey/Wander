@@ -8,7 +8,7 @@ export default class ProfileScreen extends React.Component {
 
     state = {
         user: {}
-    }
+    };
 
     unsubscribe = null;
 
@@ -32,14 +32,11 @@ export default class ProfileScreen extends React.Component {
                 <View style={{marginTop: 64, alignItems: "center"}}>
                     <View style={styles.avatarContainer}>
                         <Image style={styles.avatar} 
-                        source={
-                            this.state.user.avatar 
-                            ? {uri: this.state.user.avatar} 
-                            : require('../assets/ExampleUsers/User01.jpg')
-                        }/>
+                        source={this.state.user.avatar ? {uri: this.state.user.avatar} : require('../assets/loginLogo.png')}/>
                     </View>
                     <Text style={styles.name}>{this.state.user.name}</Text>
                 </View>
+                {/* <Button onPress={() => {Fire.shared.signOut()}} title="Log Out"></Button> */}
             </View>
         )
     }
