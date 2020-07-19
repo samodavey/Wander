@@ -1,14 +1,45 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet, Button, Image} from 'react-native'
 import {Ionicons} from '@expo/vector-icons'
+import Fire from '../Fire'
 
 
 export default class ProfileScreen extends React.Component {
+
+    state = {
+        user: {}
+    }
+
+    unsubscribe = null;
+
+    componentDidMount(){
+        const user = this.props.uid || Fire.shared.uid
+        this.unsubscribe = Fire.shared.firestore
+        .collection("users")
+        .doc(user)
+        .onSnapshot(doc => {
+            this.setState({user: doc.data()});
+        });
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
+    }
+
     render(){
         return(
             <View style={styles.container}>
-                <Text>Profile Screen</Text>
-                <Ionicons name="md-settings" size={30}/>
+                <View style={{marginTop: 64, alignItems: "center"}}>
+                    <View style={styles.avatarContainer}>
+                        <Image style={styles.avatar} 
+                        source={
+                            this.state.user.avatar 
+                            ? {uri: this.state.user.avatar} 
+                            : require('../assets/ExampleUsers/User01.jpg')
+                        }/>
+                    </View>
+                    <Text style={styles.name}>{this.state.user.name}</Text>
+                </View>
             </View>
         )
     }
@@ -17,7 +48,20 @@ export default class ProfileScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: "center",
-        justifyContent: "center"
+    },
+    avatarContainer: {
+        shadowColor: "#151734",
+        shadowRadius: 15,
+        shadowOpacity: 0.4
+    },
+    avatar: {
+        width: 136,
+        height: 136,
+        borderRadius: 68
+    },
+    name: {
+        marginTop: 24,
+        fontSize: 16,
+        fontWeight: "600"
     }
 })

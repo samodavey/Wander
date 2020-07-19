@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, Switch, ScrollView } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
+import Fire from '../Fire'
 import * as firebase from "firebase";
 import UserPermissions from '../utilities/UserPermissions';
 import * as ImagePicker from 'expo-image-picker';
@@ -28,13 +29,13 @@ export default class RegisterScreen extends React.Component{
   };
 
   handlePickAvatar = async () => {
-    UserPermissions.getCameraPermission()
+    UserPermissions.getCameraPermission();
 
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [4, 3]
-    })
+    });
 
     if(!result.cancelled){
       this.setState({user: { ...this.state.user, avatar: result.uri} });
@@ -42,15 +43,18 @@ export default class RegisterScreen extends React.Component{
   };
 
   handleSignUp = () => {
-    firebase
-    .auth()
-    .createUserWithEmailAndPassword(this.state.email, this.state.password)
-    .then(userCredentials => {
-      return userCredentials.user.updateProfile({
-        displayName: this.state.name
-      })
-    })
-    .catch(error => this.setState({errorMessage: error.message}));
+
+    Fire.shared.createUser(this.state.user)
+
+    // firebase
+    // .auth()
+    // .createUserWithEmailAndPassword(this.state.email, this.state.password)
+    // .then(userCredentials => {
+    //   return userCredentials.user.updateProfile({
+    //     displayName: this.state.name
+    //   })
+    // })
+    // .catch(error => this.setState({errorMessage: error.message}));
   };
 
   toggleTerms = (value) => {
@@ -110,8 +114,8 @@ export default class RegisterScreen extends React.Component{
             <TextInput
               style={styles.input}
               autocapitalize="none"
-              onChangeText={name => this.setState({name})}
-              value={this.state.name}
+              onChangeText={name => this.setState({user: {...this.state.user, name}})}
+              value={this.state.user.name}
             ></TextInput>
           </View>
 
@@ -121,8 +125,8 @@ export default class RegisterScreen extends React.Component{
             <TextInput
               style={styles.input}
               autocapitalize="none"
-              onChangeText={email => this.setState({email})}
-              value={this.state.email}
+              onChangeText={email => this.setState({user: {...this.state.user, email}})}
+              value={this.state.user.email}
             ></TextInput>
           </View>
 
@@ -132,8 +136,8 @@ export default class RegisterScreen extends React.Component{
               style={styles.input}
               secureTextEntry
               autocapitalize="none"
-              onChangeText={password => this.setState({password})}
-              value={this.state.password}
+              onChangeText={password => this.setState({user: {...this.state.user, password}})}
+              value={this.state.user.password}
               ></TextInput>
           </View>
 

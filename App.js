@@ -17,21 +17,21 @@ import * as firebase from 'firebase'
 import { Image } from 'react-native'
 
 // Need to privatise these keys!!!
-//var firebaseConfig = FirebaseKeys;
-const firebaseConfig = {
-  apiKey: "AIzaSyD3mgabcLPHORVerk12owHJOe2YH7rSrD8",
-  authDomain: "wanderapp-5ede5.firebaseapp.com",
-  databaseURL: "https://wanderapp-5ede5.firebaseio.com",
-  projectId: "wanderapp-5ede5",
-  storageBucket: "wanderapp-5ede5.appspot.com",
-  messagingSenderId: "877989859615",
-  appId: "1:877989859615:web:87284603431a7da056602a"
-};
+var firebaseConfig = FirebaseKeys;
+// const firebaseConfig = {
+//   apiKey: "AIzaSyD3mgabcLPHORVerk12owHJOe2YH7rSrD8",
+//   authDomain: "wanderapp-5ede5.firebaseapp.com",
+//   databaseURL: "https://wanderapp-5ede5.firebaseio.com",
+//   projectId: "wanderapp-5ede5",
+//   storageBucket: "wanderapp-5ede5.appspot.com",
+//   messagingSenderId: "877989859615",
+//   appId: "1:877989859615:web:87284603431a7da056602a"
+// };
 
 //Checks if firebase apps has loaded to avoid error
-if(!firebase.apps.length){
-  firebase.initializeApp(firebaseConfig);
-}
+// if(!firebase.apps.length){
+//   firebase.initializeApp(firebaseConfig);
+// }
 
 const AppTabNavigator = createBottomTabNavigator(
   {
@@ -61,7 +61,7 @@ const AppTabNavigator = createBottomTabNavigator(
       activeTintColor: "#00d589",
       inactiveTintColor: "#B8BBC4",
       showLabel: false
-    }
+    },
   }
 )
 
