@@ -16,7 +16,6 @@ export default class RegisterScreen extends React.Component{
   static navigationOptions = {
     headerShown: false
   };
-  //Avatar throws an error, unsure why! Still works though
   state = {
     user: {
       name: "",
@@ -43,18 +42,7 @@ export default class RegisterScreen extends React.Component{
   };
 
   handleSignUp = () => {
-
     Fire.shared.createUser(this.state.user)
-
-    // firebase
-    // .auth()
-    // .createUserWithEmailAndPassword(this.state.email, this.state.password)
-    // .then(userCredentials => {
-    //   return userCredentials.user.updateProfile({
-    //     displayName: this.state.name
-    //   })
-    // })
-    // .catch(error => this.setState({errorMessage: error.message}));
   };
 
   toggleTerms = (value) => {
@@ -92,7 +80,7 @@ export default class RegisterScreen extends React.Component{
           <Text style={styles.greeting}>{'Hello!\nSign up to get started.'}</Text>
 
           <TouchableOpacity style={styles.avatarPlaceholder} onPress={this.handlePickAvatar}>
-            <Image source={{uri: this.state.user.avatar}} style={styles.avatar}/>
+            <Image source={{uri: this.state.user.avatar !== null ? url : '../assets/loginLogo.png'}} style={styles.avatar}/>
             <Ionicons 
             name="ios-add" 
             size={40} 
@@ -115,8 +103,14 @@ export default class RegisterScreen extends React.Component{
               style={styles.input}
               autocapitalize="none"
               onChangeText={name => this.setState({user: {...this.state.user, name}})}
-              value={this.state.user.name}
-            ></TextInput>
+              value={this.state.user.name}>
+                {/* <Ionicons 
+                name="ios-person" 
+                size={30} 
+                color="#00d589" 
+                style={{marginTop:6, marginLeft:2}}>
+                </Ionicons> */}
+            </TextInput>
           </View>
 
 
@@ -126,8 +120,14 @@ export default class RegisterScreen extends React.Component{
               style={styles.input}
               autocapitalize="none"
               onChangeText={email => this.setState({user: {...this.state.user, email}})}
-              value={this.state.user.email}
-            ></TextInput>
+              value={this.state.user.email}>
+              {/* <Ionicons 
+                name="ios-mail" 
+                size={30} 
+                color="#00d589" 
+                style={{marginTop:6, marginLeft:2}}>
+                </Ionicons> */}
+            </TextInput>
           </View>
 
           <View style={{marginTop: 32}}>
@@ -137,8 +137,8 @@ export default class RegisterScreen extends React.Component{
               secureTextEntry
               autocapitalize="none"
               onChangeText={password => this.setState({user: {...this.state.user, password}})}
-              value={this.state.user.password}
-              ></TextInput>
+              value={this.state.user.password}>
+              </TextInput>
           </View>
 
           {/* <View style={{marginTop: 32}}>
