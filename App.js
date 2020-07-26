@@ -16,41 +16,37 @@ import ProfileScreen from './screens/ProfileScreen'
 import * as firebase from 'firebase'
 import { Image } from 'react-native'
 
-const AppContainer = createStackNavigator(
+const AppTabNavigator = createBottomTabNavigator(
   {
-    default: createBottomTabNavigator(
-      {
-        Profile: {
-          screen: ProfileScreen,
-          navigationOptions: {
-            tabBarIcon: ({tintColor}) => <Ionicons name="md-contact" size={30} color={tintColor}/>
-          }
-        },
-        Home: {
-          screen: HomeScreen,
-          navigationOptions: {
-             tabBarIcon: ({tintColor}) => <Ionicons name="md-paper-plane" size={30} color={tintColor}/>
-             //Maybe use the logo?
-             //tabBarIcon: ({tintColor}) => <Image source={require('./assets/mainIcon.png')} color={tintColor}></Image>
-          }
-        },
-        Messages: {
-          screen: MessagesScreen,
-          navigationOptions: {
-            tabBarIcon: ({tintColor}) => <Ionicons name="ios-chatboxes" size={30} color={tintColor}/>
-          }
-        }
-      },
-      {
-        tabBarOptions: {
-          activeTintColor: "#00d589",
-          inactiveTintColor: "#B8BBC4",
-          showLabel: false
-        },
+    Profile: {
+      screen: ProfileScreen,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => <Ionicons name="md-contact" size={30} color={tintColor}/>
       }
-    ),
-  }
-)
+    },
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: {
+          tabBarIcon: ({tintColor}) => <Ionicons name="md-paper-plane" size={30} color={tintColor}/>
+          //Maybe use the logo?
+          //tabBarIcon: ({tintColor}) => <Image source={require('./assets/mainIcon.png')} color={tintColor}></Image>
+      }
+    },
+    Messages: {
+      screen: MessagesScreen,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => <Ionicons name="ios-chatboxes" size={30} color={tintColor}/>
+      }
+     }
+    },
+    {
+      tabBarOptions: {
+        activeTintColor: "#00d589",
+        inactiveTintColor: "#B8BBC4",
+        showLabel: false
+      },
+    }
+);
 
 // const AppTabNavigator = 
 // );
@@ -69,7 +65,7 @@ export default createAppContainer(
   createSwitchNavigator(
     {
       Loading: LoadingScreen,
-      App: AppContainer,
+      App: AppTabNavigator,
       Auth: AuthStack
     },
     {

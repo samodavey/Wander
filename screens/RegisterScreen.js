@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, Switch, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, Switch, ScrollView, Dimensions } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import Fire from '../Fire'
 import * as firebase from "firebase";
@@ -11,6 +11,8 @@ import * as ImagePicker from 'expo-image-picker';
 //NEED TO IMPLEMENT GENDER, TERMS & CONDITIONS
 //FIX MAJOR & MINOR BUGS
 
+const {width : WIDTH} = Dimensions.get('window')
+
 export default class RegisterScreen extends React.Component{
 
   static navigationOptions = {
@@ -21,7 +23,7 @@ export default class RegisterScreen extends React.Component{
       name: "",
       email: "",
       password: "",
-      avatar: null
+      avatar: '../assets/loginLogo.png'
     },
     errorMessage: null,
     //switchValue: false
@@ -51,13 +53,6 @@ export default class RegisterScreen extends React.Component{
 
 
   render() {
-    // let data = [{
-    //   value: 'Male',
-    // }, {
-    //   value: 'Female'
-    // }, {
-    //   value: 'Other'
-    // }];
     return (
       <View style={styles.container}>
         
@@ -80,13 +75,13 @@ export default class RegisterScreen extends React.Component{
           <Text style={styles.greeting}>{'Hello!\nSign up to get started.'}</Text>
 
           <TouchableOpacity style={styles.avatarPlaceholder} onPress={this.handlePickAvatar}>
-            <Image source={{uri: this.state.user.avatar !== null ? url : '../assets/loginLogo.png'}} style={styles.avatar}/>
+            <Image source={{uri: this.state.user.avatar}} style={styles.avatar}/>          
             <Ionicons 
             name="ios-add" 
             size={40} 
             color="#00d589" 
             style={{marginTop:6, marginLeft:2}}>
-            </Ionicons>
+            </Ionicons>    
           </TouchableOpacity>
         </View>
 
@@ -99,39 +94,45 @@ export default class RegisterScreen extends React.Component{
         <View style={styles.form}>
           <View>
             <Text style={styles.inputTitle}>Full Name</Text>
+            <Ionicons 
+                name="ios-person" 
+                size={30} 
+                color="#00d589" 
+                style={styles.inputIcon}>
+            </Ionicons>
             <TextInput
               style={styles.input}
               autocapitalize="none"
               onChangeText={name => this.setState({user: {...this.state.user, name}})}
               value={this.state.user.name}>
-                {/* <Ionicons 
-                name="ios-person" 
-                size={30} 
-                color="#00d589" 
-                style={{marginTop:6, marginLeft:2}}>
-                </Ionicons> */}
             </TextInput>
           </View>
 
 
           <View style={{marginTop: 32}}>
             <Text style={styles.inputTitle}>Email Address</Text>
+            <Ionicons 
+                name="ios-mail" 
+                size={30} 
+                color="#00d589" 
+                style={styles.inputIcon}>
+            </Ionicons>
             <TextInput
               style={styles.input}
               autocapitalize="none"
               onChangeText={email => this.setState({user: {...this.state.user, email}})}
               value={this.state.user.email}>
-              {/* <Ionicons 
-                name="ios-mail" 
-                size={30} 
-                color="#00d589" 
-                style={{marginTop:6, marginLeft:2}}>
-                </Ionicons> */}
             </TextInput>
           </View>
 
           <View style={{marginTop: 32}}>
             <Text style={styles.inputTitle}>Password</Text>
+            <Ionicons 
+                name="ios-key" 
+                size={30} 
+                color="#00d589" 
+                style={styles.inputIcon}>
+            </Ionicons>
             <TextInput
               style={styles.input}
               secureTextEntry
@@ -213,8 +214,14 @@ const styles = StyleSheet.create({
     borderBottomColor: "#8A8F9E",
     borderBottomWidth: StyleSheet.hairlineWidth,
     height: 40,
+    width: WIDTH - 55,
+    paddingLeft: 35,
     fontSize: 15,
     color: "#161F3D"
+  },
+  inputIcon:{
+    position: 'absolute',
+    top: 15
   },
   button:{
     marginHorizontal: 30,
