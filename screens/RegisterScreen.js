@@ -5,6 +5,7 @@ import Fire from '../Fire'
 import * as firebase from "firebase";
 import UserPermissions from '../utilities/UserPermissions';
 import * as ImagePicker from 'expo-image-picker';
+import { IconButton, Colors } from 'react-native-paper';
 //import { Dropdown } from 'react-native-material-dropdown';
 
 
@@ -73,15 +74,14 @@ export default class RegisterScreen extends React.Component{
         <View style={{position: "absolute", top: 45, alignItems: "center", width: "100%"}}>
           
           <Text style={styles.greeting}>{'Hello!\nSign up to get started.'}</Text>
-
           <TouchableOpacity style={styles.avatarPlaceholder} onPress={this.handlePickAvatar}>
-            <Image source={{uri: this.state.user.avatar}} style={styles.avatar}/>          
             <Ionicons 
-            name="ios-add" 
+            name="ios-camera" 
             size={40} 
             color="#00d589" 
             style={{marginTop:6, marginLeft:2}}>
-            </Ionicons>    
+            </Ionicons>   
+            <Image source={{uri: this.state.user.avatar}} style={styles.avatar}/> 
           </TouchableOpacity>
         </View>
 
@@ -93,7 +93,7 @@ export default class RegisterScreen extends React.Component{
         
         <View style={styles.form}>
           <View>
-            <Text style={styles.inputTitle}>Full Name</Text>
+            <Text style={styles.inputTitle}>First Name</Text>
             <Ionicons 
                 name="ios-person" 
                 size={30} 

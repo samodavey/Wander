@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, LayoutAnimation } from 'react-native';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, LayoutAnimation, Dimensions } from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
 import GradientButton from 'react-native-gradient-buttons';
 import * as firebase from 'firebase'
+
+const {width : WIDTH} = Dimensions.get('window')
 
 export default class LoginScreen extends React.Component{
 
@@ -58,6 +61,12 @@ export default class LoginScreen extends React.Component{
         <View style={styles.form}>
           <View>
             <Text style={styles.inputTitle}>Email Address</Text>
+            <Ionicons 
+                name="ios-mail" 
+                size={30} 
+                color="#00d589" 
+                style={styles.inputIcon}>
+            </Ionicons>
             <TextInput
               style={styles.input}
               autocapitalize="none"
@@ -68,6 +77,12 @@ export default class LoginScreen extends React.Component{
 
           <View style={{marginTop: 32}}>
             <Text style={styles.inputTitle}>Password</Text>
+            <Ionicons 
+                name="ios-key" 
+                size={30} 
+                color="#00d589" 
+                style={styles.inputIcon}>
+            </Ionicons>
             <TextInput
               style={styles.input}
               secureTextEntry
@@ -143,8 +158,14 @@ const styles = StyleSheet.create({
     borderBottomColor: "#8A8F9E",
     borderBottomWidth: StyleSheet.hairlineWidth,
     height: 40,
+    width: WIDTH - 55,
+    paddingLeft: 35,
     fontSize: 15,
     color: "#161F3D"
+  },
+  inputIcon:{
+    position: 'absolute',
+    top: 15
   },
   button:{
     marginHorizontal: 30,
