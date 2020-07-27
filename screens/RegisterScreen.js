@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, Switch, ScrollView, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, Switch, ScrollView, Dimensions, ImageBackground } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import Fire from '../Fire'
 import * as firebase from "firebase";
@@ -56,23 +56,24 @@ export default class RegisterScreen extends React.Component{
   render() {
     return (
       <View style={styles.container}>
-        
-        {/* Maybe add back button? */}
+
+        {/* Changed background to blank until suitable one is found */}
+        {/* source={require('../assets/ExampleUsers/User01.jpg')} */}
+        <ImageBackground  style={{flex:1, resizeMode: "cover", justifyContent: "center"}}>
 
         <StatusBar barStyle="light-content"></StatusBar>
 
-        <Image 
+        {/* <Image 
         source={require("../assets/authHeader.png")}
-        style={{marginTop: -110, marginLeft: -15}}>
+        style={{marginTop: -200, marginLeft: -15}}>
         </Image>
 
         <Image 
         source={require("../assets/authFooter.png")}
         style={{position: "absolute", bottom: -185, right: -100}}>
-        </Image>
+        </Image> */}
 
-        <View style={{position: "absolute", top: 45, alignItems: "center", width: "100%"}}>
-          
+        <View style={{alignItems:"center", marginTop: 25}}>    
           <Text style={styles.greeting}>{'Hello!\nSign up to get started.'}</Text>
           <TouchableOpacity style={styles.avatarPlaceholder} onPress={this.handlePickAvatar}>
             <Ionicons 
@@ -172,7 +173,7 @@ export default class RegisterScreen extends React.Component{
             Already have an account? <Text style={{fontWeight: "500", color: "#00d589"}}>Login</Text>
           </Text>
         </TouchableOpacity>
-
+        </ImageBackground>
       </View>
     );
   }
@@ -202,7 +203,7 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   form:{
-    marginBottom: 48,
+    bottom: 55,
     marginHorizontal: 30
   },
   inputTitle:{
