@@ -61,7 +61,7 @@ export default class RegisterScreen extends React.Component{
         {/* source={require('../assets/ExampleUsers/User01.jpg')} */}
         <ImageBackground  style={{flex:1, resizeMode: "cover", justifyContent: "center"}}>
 
-        <StatusBar barStyle="light-content"></StatusBar>
+        <StatusBar barStyle="dark-content"></StatusBar>
 
         {/* <Image 
         source={require("../assets/authHeader.png")}

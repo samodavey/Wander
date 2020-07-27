@@ -21,12 +21,10 @@ export default class LoginScreen extends React.Component{
   handleLogin = () => {
     const {email, password} = this.state
 
-
     firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
     .catch(error => this.setState({errorMessage: error.message}))
-
   };
 
   render() {
@@ -35,9 +33,9 @@ export default class LoginScreen extends React.Component{
     return (
       <View style={styles.container}>
         
-        <StatusBar barStyle="light-content"></StatusBar>
+        <StatusBar barStyle="dark-content"></StatusBar>
 
-        <Image 
+        {/* <Image 
         source={require("../assets/authHeader.png")}
         style={{marginTop: -110, marginLeft: -15}}>
         </Image>
@@ -45,11 +43,12 @@ export default class LoginScreen extends React.Component{
         <Image 
         source={require("../assets/authFooter.png")}
         style={{position: "absolute", bottom: -185, right: -100}}>
-        </Image>
+        </Image> */}
 
-        <Image 
+        {/* Use new logo against appropriate background */}
+        <Image
         source={require("../assets/loginLogo.png")}
-        style={{marginTop:-110, alignSelf: "center", marginTop: -60}}>
+        style={{alignSelf: "center", marginTop: 75, width: 100, resizeMode: 'contain'}}>
         </Image>
 
         <Text style={styles.greeting}>{'Hello again.\nWelcome Back.'}</Text>
