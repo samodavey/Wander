@@ -41,7 +41,7 @@ class Fire {
         let remoteUri = null
         //Need to improve error logging
         try {
-            await firebase.auth().createUserWithEmailAndPassword(user.email, user.password, user.name, user.avatar)
+            await firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
 
             let db = this.firestore.collection("users").doc(this.uid)
             
