@@ -5,7 +5,6 @@ import Fire from '../Fire'
 import * as firebase from "firebase";
 import UserPermissions from '../utilities/UserPermissions';
 import * as ImagePicker from 'expo-image-picker';
-import { IconButton, Colors } from 'react-native-paper';
 //import { Dropdown } from 'react-native-material-dropdown';
 
 
@@ -45,7 +44,7 @@ export default class RegisterScreen extends React.Component{
   };
 
   handleSignUp = () => {
-    Fire.shared.createUser(this.state.user)
+    Fire.shared.createUser(this.state.user);
   };
 
   toggleTerms = (value) => {
@@ -140,7 +139,7 @@ export default class RegisterScreen extends React.Component{
               autocapitalize="none"
               onChangeText={password => this.setState({user: {...this.state.user, password}})}
               value={this.state.user.password}>
-              </TextInput>
+            </TextInput>
           </View>
 
           {/* <View style={{marginTop: 32}}>

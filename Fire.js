@@ -39,12 +39,12 @@ class Fire {
 
     createUser = async user => {
         let remoteUri = null
-
+        //Need to improve error logging
         try {
-            await firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+            await firebase.auth().createUserWithEmailAndPassword(user.email, user.password, user.name, user.avatar)
 
             let db = this.firestore.collection("users").doc(this.uid)
-
+            
             db.set({
                 name: user.name,
                 email: user.email,
@@ -56,6 +56,7 @@ class Fire {
 
                 db.set({avatar: remoteUri}, {merge: true})
             }
+
         } catch (error) {
             alert ("Error: ", error);
         }
