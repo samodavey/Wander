@@ -5,7 +5,7 @@ import Fire from '../Fire'
 import * as firebase from "firebase";
 import UserPermissions from '../utilities/UserPermissions';
 import * as ImagePicker from 'expo-image-picker';
-//import { Dropdown } from 'react-native-material-dropdown';
+import { Dropdown } from 'react-native-material-dropdown';
 
 
 //NEED TO IMPLEMENT GENDER, TERMS & CONDITIONS
@@ -53,24 +53,20 @@ export default class RegisterScreen extends React.Component{
 
 
   render() {
+    // let data = [{
+    //   value: 'Male',
+    // }, {
+    //   value: 'Female'
+    // }, {
+    //   value: 'Other',
+    // },];
+
     return (
+
+      <ImageBackground source={require('../assets/backgrounds/mountain.jpg')} style={{flex:1, resizeMode: "cover", justifyContent: "center"}}>
       <View style={styles.container}>
 
-        {/* Changed background to blank until suitable one is found */}
-        {/* source={require('../assets/ExampleUsers/User01.jpg')} */}
-        <ImageBackground  style={{flex:1, resizeMode: "cover", justifyContent: "center"}}>
-
-        <StatusBar barStyle="dark-content"></StatusBar>
-
-        {/* <Image 
-        source={require("../assets/authHeader.png")}
-        style={{marginTop: -200, marginLeft: -15}}>
-        </Image>
-
-        <Image 
-        source={require("../assets/authFooter.png")}
-        style={{position: "absolute", bottom: -185, right: -100}}>
-        </Image> */}
+        <StatusBar barStyle="light-content"></StatusBar>
 
         <View style={{alignItems:"center", marginTop: 25}}>    
           <Text style={styles.greeting}>{'Hello!\nSign up to get started.'}</Text>
@@ -142,15 +138,19 @@ export default class RegisterScreen extends React.Component{
             </TextInput>
           </View>
 
-          {/* <View style={{marginTop: 32}}>
-            <Text style={styles.inputTitle}>Gender</Text>
+          {/* <View style={{marginTop: 10}}>
             <Dropdown
-            label='Select your gender'
+            label='Gender'
             data={data}
+            baseColor="#FFF"
+            disabledItemColor="#000"
+            itemColor="#000"
+            selectedItemColor="#000"
+            textColor="#FFF"
             />
-          </View>
+          </View> */}
 
-          <View style={{marginTop: 32}}>
+          {/* <View style={{marginTop: 32}}>
             <Text style={styles.inputTitle}>I agree to the terms & conditions</Text>
             <Switch
             style={{marginTop: 5}}
@@ -168,12 +168,12 @@ export default class RegisterScreen extends React.Component{
         </TouchableOpacity>
 
         <TouchableOpacity style={{alignSelf: "center", marginTop: 32}} onPress={() => this.props.navigation.navigate("Login")}>
-          <Text style={{color: "#414959", fontSize: 13}}>
+          <Text style={{color: "#FFF", fontSize: 14}}>
             Already have an account? <Text style={{fontWeight: "500", color: "#00d589"}}>Login</Text>
           </Text>
         </TouchableOpacity>
-        </ImageBackground>
       </View>
+      </ImageBackground>
     );
   }
 }
@@ -181,12 +181,14 @@ export default class RegisterScreen extends React.Component{
 
 const styles = StyleSheet.create({
   container:{
-    flex: 1
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)'
   },
   greeting:{
     marginTop: 5,
-    fontSize: 18,
-    fontWeight: "400",
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#FFF",
     textAlign: "center"
   },
   errorMessage:{
@@ -206,12 +208,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 30
   },
   inputTitle:{
-    color:"#8A8F9E",
-    fontSize: 10,
+    color:"#FFF",
+    fontSize: 11,
+    fontWeight:"bold",
     textTransform: "uppercase"
   },
   input:{
-    borderBottomColor: "#8A8F9E",
+    borderBottomColor: "#FFF",
     borderBottomWidth: StyleSheet.hairlineWidth,
     height: 40,
     width: WIDTH - 55,

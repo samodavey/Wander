@@ -57,8 +57,21 @@ class Fire {
                 db.set({avatar: remoteUri}, {merge: true})
             }
 
-        } catch (error) {
-            alert ("Error: ", error);
+        } catch (err) {
+            // alert ("Error: ", err.message);
+            //Come up with a better way of doing
+            if(!user.name){
+                alert('Name required')
+            }
+            if(!user.email){
+                alert('Email required')
+            }
+            if(!user.password){
+                alert('Password required')
+            }
+            if(!user.avatar){
+                alert('Avatar required')
+            }
         }
     }
 
