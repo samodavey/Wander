@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, LayoutAnimation, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, LayoutAnimation, Dimensions, ImageBackground } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import GradientButton from 'react-native-gradient-buttons';
 import * as firebase from 'firebase'
@@ -31,26 +31,16 @@ export default class LoginScreen extends React.Component{
     LayoutAnimation.easeInEaseOut();
 
     return (
+      <ImageBackground source={require('../assets/backgrounds/cambodia.jpg')} style={{flex:1, resizeMode: "cover", justifyContent: "center"}}>
+
       <View style={styles.container}>
         
-        <StatusBar barStyle="dark-content"></StatusBar>
-
-        {/* <Image 
-        source={require("../assets/authHeader.png")}
-        style={{marginTop: -110, marginLeft: -15}}>
-        </Image>
-
+        <StatusBar barStyle="light-content"></StatusBar>
+        
         <Image 
-        source={require("../assets/authFooter.png")}
-        style={{position: "absolute", bottom: -185, right: -100}}>
-        </Image> */}
-
-        {/* Use new logo against appropriate background */}
-        <Image
-        source={require("../assets/loginLogo.png")}
-        style={{alignSelf: "center", marginTop: 75, width: 100, resizeMode: 'contain'}}>
+        source={require("../assets/transparent-logo.png")} 
+        style={{flex: 1, width: 250, resizeMode: 'contain', bottom: 50, alignSelf: 'center'}}>
         </Image>
-
         <Text style={styles.greeting}>{'Hello again.\nWelcome Back.'}</Text>
 
         <View style={styles.errorMessage}>
@@ -97,26 +87,16 @@ export default class LoginScreen extends React.Component{
           <Text style={{color:"#FFF", fontWeight: "500"}}>Sign In</Text>
         </TouchableOpacity>
 
-        {/* <GradientButton
-        style={{marginHorizontal:30, marginTop: 10}}
-        text = "Sign In"
-        gradientBegin = "#020024"
-        gradientEnd= "#00d589"
-        gradientDirection = "diagnol"
-        height={60}
-        radius={15}
-        onPressAction={this.handleLogin}
-        ></GradientButton> */}
-
         <TouchableOpacity
-        style={{alignSelf: "center", marginTop: 32}}
+        style={{alignSelf: "center", bottom: 32}}
         onPress={() => this.props.navigation.navigate("Register")}>
-          <Text style={{color: "#414959", fontSize: 13}}>
+          <Text style={{color: "#FFF", fontSize: 13}}>
             New to Wander? <Text style={{fontWeight: "500", color: "#00d589"}}>Sign Up</Text>
           </Text>
         </TouchableOpacity>
 
       </View>
+      </ImageBackground>
     );
   }
 }
@@ -125,11 +105,13 @@ export default class LoginScreen extends React.Component{
 const styles = StyleSheet.create({
   container:{
     flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)'
   },
   greeting:{
-    marginTop: 5,
-    fontSize: 18,
-    fontWeight: "400",
+    bottom: 100,
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#FFF",
     textAlign: "center"
   },
   errorMessage:{
@@ -145,11 +127,11 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   form:{
-    marginBottom: 48,
+    bottom: 100,
     marginHorizontal: 30
   },
   inputTitle:{
-    color:"#8A8F9E",
+    color:"#FFF",
     fontSize: 10,
     textTransform: "uppercase"
   },
@@ -168,6 +150,7 @@ const styles = StyleSheet.create({
   },
   button:{
     marginHorizontal: 30,
+    bottom: 50,
     backgroundColor: "#00d589",
     borderRadius: 15,
     height: 52,

@@ -63,12 +63,14 @@ export default class RegisterScreen extends React.Component{
 
     return (
 
-      <ImageBackground source={require('../assets/backgrounds/mountain.jpg')} style={{flex:1, resizeMode: "cover", justifyContent: "center"}}>
+      <ImageBackground source={require('../assets/backgrounds/cambodia.jpg')} style={{flex:1, resizeMode: "cover", justifyContent: "center"}}>
       <View style={styles.container}>
 
         <StatusBar barStyle="light-content"></StatusBar>
 
-        <View style={{alignItems:"center", marginTop: 25}}>    
+        <Image source={require("../assets/transparent-logo.png")} style={{flex: 1, width: 250, resizeMode: 'contain', bottom: -5, alignSelf: 'center'}}></Image>
+
+        <View style={{alignItems:"center"}}>  
           <Text style={styles.greeting}>{'Hello!\nSign up to get started.'}</Text>
           <TouchableOpacity style={styles.avatarPlaceholder} onPress={this.handlePickAvatar}>
             <Ionicons 
@@ -182,7 +184,7 @@ export default class RegisterScreen extends React.Component{
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)'
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   greeting:{
     marginTop: 5,
