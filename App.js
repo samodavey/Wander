@@ -18,26 +18,26 @@ import { Image } from 'react-native'
 
 const AppTabNavigator = createBottomTabNavigator(
   {
-    Profile: {
-      screen: ProfileScreen,
-      navigationOptions: {
-        tabBarIcon: ({tintColor}) => <Ionicons name="md-contact" size={30} color={tintColor}/>
-      }
-    },
-    Home: {
-      screen: HomeScreen,
-      navigationOptions: {
-          tabBarIcon: ({tintColor}) => <Ionicons name="md-paper-plane" size={30} color={tintColor}/>
-          //Maybe use the logo?
-          //tabBarIcon: ({tintColor}) => <Image source={require('./assets/mainIcon.png')} color={tintColor}></Image>
-      }
-    },
-    Messages: {
-      screen: MessagesScreen,
-      navigationOptions: {
-        tabBarIcon: ({tintColor}) => <Ionicons name="ios-chatboxes" size={30} color={tintColor}/>
-      }
-     }
+      Profile: {
+        screen: ProfileScreen,
+        navigationOptions: {
+          tabBarIcon: ({tintColor}) => <Ionicons name="md-contact" size={30} color={tintColor}/>
+        }
+      },
+      Home: {
+        screen: HomeScreen,
+        navigationOptions: {
+            tabBarIcon: ({tintColor}) => <Ionicons name="md-paper-plane" size={30} color={tintColor}/>
+            //Maybe use the logo?
+            //tabBarIcon: ({tintColor}) => <Image source={require('./assets/mainIcon.png')} color={tintColor}></Image>
+        }
+      },
+      Messages: {
+        screen: MessagesScreen,
+        navigationOptions: {
+          tabBarIcon: ({tintColor}) => <Ionicons name="ios-chatboxes" size={30} color={tintColor}/>
+        }
+      },
     },
     {
       tabBarOptions: {
