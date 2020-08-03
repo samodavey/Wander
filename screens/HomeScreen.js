@@ -2,18 +2,29 @@ import * as React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, LayoutAnimation, Image, ImageSourcePropType } from 'react-native';
 import { shape, string, number } from 'prop-types'
 import * as firebase from 'firebase'
+import Fire from '../Fire'
+import {Ionicons, Fontisto} from '@expo/vector-icons'
 
 export default class HomeScreen extends React.Component{
 
   state = {
-    email: "",
-    displayName:""
-  }
+    user: {}
+  };
+
+  unsubscribe = null;
 
   componentDidMount(){
-    const {email, displayName} = firebase.auth().currentUser
+    const user = this.props.uid || Fire.shared.uid
+    this.unsubscribe = Fire.shared.firestore
+    .collection("users")
+    .doc(user)
+    .onSnapshot(doc => {
+        this.setState({user: doc.data()});
+    });
+  }
 
-    this.setState({email, displayName});
+  componentWillUnmount() {
+      this.unsubscribe();
   }
 
   signOutUser = () => {
@@ -25,7 +36,8 @@ export default class HomeScreen extends React.Component{
     
     return(
       <View style={styles.container}>
-        <Text>Hi {this.state.email}!</Text>
+        {/* <Fontisto name="earth" size={150} color={'#B8BBC4'}/> */}
+        <Text>Hi {this.state.user.name}!</Text>
 
         <TouchableOpacity style={{marginTop:32}} onPress={this.signOutUser}>
           <Text>Logout</Text>

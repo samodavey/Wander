@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     width: WIDTH - 55,
     paddingLeft: 35,
     fontSize: 15,
-    color: "#161F3D"
+    color: "#FFF"
   },
   inputIcon:{
     position: 'absolute',
