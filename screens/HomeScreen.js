@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import Swiper from 'react-native-deck-swiper'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, View, Image, ImageBackground, Platform} from 'react-native'
+import Fire from '../Fire'
+import firebase from "firebase"
+import { debug } from 'react-native-reanimated'
+
 
 //REWRITE THIS IN YOUR OWN WAY
 function * range (start, end) {
@@ -9,10 +13,37 @@ function * range (start, end) {
   }
 }
 
+
 export default class HomeScreen extends Component {
+  // state = {
+  //   user: {},
+  //   cards: [...range(1, 50)],
+  //   swipedAllCards: false,
+  //   swipeDirection: '',
+  //   cardIndex: 0
+  // };
+  componentDidMount(){
+    const user = this.props.uid || Fire.shared.uid
+    this.unsubscribe = Fire.shared.firestore
+    .collection("users")
+    .doc(user)
+    .onSnapshot(doc => {
+        this.setState({user: doc.data()});
+    });
+  }
+
+  unsubscribe = null;
+  
+  
+  componentWillUnmount() {
+      this.unsubscribe();
+  }
+
   constructor (props) {
     super(props)
     this.state = {
+      user: {
+      },
       cards: [...range(1, 50)],
       swipedAllCards: false,
       swipeDirection: '',
@@ -23,7 +54,11 @@ export default class HomeScreen extends Component {
   renderCard = (card, index) => {
     return (
       <View style={styles.card}>
-        <Text style={styles.text}>{card} - {index}</Text>
+        {/* RENDER CARD NEEDS TO BE CALLED IMMEDIATELY */}  
+        <ImageBackground source={this.state.user.avatar ? {uri: this.state.user.avatar} : require('../assets/loginLogo.png')} style={styles.cardImage} imageStyle={{borderRadius: 8}}>
+          <Text style={styles.text}>{this.state.user.name}</Text>
+        </ImageBackground>
+        
       </View>
     )
   };
@@ -41,11 +76,23 @@ export default class HomeScreen extends Component {
   swipeLeft = () => {
     this.swiper.swipeLeft()
   };
-
+  
   render () {
     return (
       <View style={styles.container}>
         <Swiper
+          // renderCard={(card, index) => {
+          //   return (
+          //     <View style={styles.card}>
+          //       {/* RENDER CARD NEEDS TO BE CALLED IMMEDIATELY */}  
+          //       <ImageBackground source={this.state.user.avatar ? {uri: this.state.user.avatar} : require('../assets/loginLogo.png')} style={styles.cardImage} imageStyle={{borderRadius: 8}}>
+          //         <Text style={styles.text}>{this.state.user.name}</Text>
+          //       </ImageBackground>
+          //     </View>
+          //   )
+          // }}
+          renderCard={this.renderCard}
+          useViewOverflow={Platform.OS === 'ios'}
           backgroundColor={'#FFF'}
           ref={swiper => {
             this.swiper = swiper
@@ -59,7 +106,6 @@ export default class HomeScreen extends Component {
           cards={this.state.cards}
           cardIndex={this.state.cardIndex}
           cardVerticalMargin={80}
-          renderCard={this.renderCard}
           onSwipedAll={this.onSwipedAllCards}
           stackSize={3}
           stackSeparation={15}
@@ -151,15 +197,23 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     borderRadius: 10,
-    borderWidth: 2,
-    borderColor: '#000',
+    // borderWidth: 3,
+    // borderColor: '#000',
     justifyContent: 'center',
-    backgroundColor: 'white'
+    // backgroundColor: 'white'
   },
   text: {
-    textAlign: 'center',
-    fontSize: 50,
-    backgroundColor: 'transparent'
+    textAlign: 'left',
+    fontSize: 35,
+    backgroundColor: 'transparent',
+    color: '#FFF',
+    marginTop: '135%',
+    marginLeft: '5%',
+  },
+  cardImage: {
+    flex: 1,
+    alignSelf: 'center',
+    width: 330,
   },
   done: {
     textAlign: 'center',

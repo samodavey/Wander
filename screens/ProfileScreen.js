@@ -36,7 +36,7 @@ export default class ProfileScreen extends React.Component {
                     </View>
                     <Text style={styles.name}>{this.state.user.name}</Text>
                 </View>
-                {/* <Button onPress={() => {Fire.shared.signOut()}} title="Log Out"></Button> */}
+                <Button onPress={() => {Fire.shared.signOut()}} title="Log Out"></Button>
             </View>
         )
     }

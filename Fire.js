@@ -75,9 +75,9 @@ class Fire {
         }
     }
 
-    // signOut = () => {
-    //     firebase.auth().signOut();
-    // }
+    signOut = () => {
+        firebase.auth().signOut();
+    }
 
     get firestore() {
         return firebase.firestore()
