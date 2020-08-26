@@ -57,8 +57,7 @@ export default class HomeScreen extends Component {
         {/* RENDER CARD NEEDS TO BE CALLED IMMEDIATELY */}  
         <ImageBackground source={this.state.user.avatar ? {uri: this.state.user.avatar} : require('../assets/loginLogo.png')} style={styles.cardImage} imageStyle={{borderRadius: 8}}>
           <Text style={styles.text}>{this.state.user.name}</Text>
-        </ImageBackground>
-        
+        </ImageBackground>    
       </View>
     )
   };
@@ -80,20 +79,9 @@ export default class HomeScreen extends Component {
   render () {
     return (
       <View style={styles.container}>
+        {/* Load in multiple users */}
+
         <Swiper
-          // renderCard={(card, index) => {
-          //   return (
-          //     <View style={styles.card}>
-          //       {/* RENDER CARD NEEDS TO BE CALLED IMMEDIATELY */}  
-          //       <ImageBackground source={this.state.user.avatar ? {uri: this.state.user.avatar} : require('../assets/loginLogo.png')} style={styles.cardImage} imageStyle={{borderRadius: 8}}>
-          //         <Text style={styles.text}>{this.state.user.name}</Text>
-          //       </ImageBackground>
-          //     </View>
-          //   )
-          // }}
-          renderCard={this.renderCard}
-          useViewOverflow={Platform.OS === 'ios'}
-          backgroundColor={'#FFF'}
           ref={swiper => {
             this.swiper = swiper
           }}
@@ -101,11 +89,13 @@ export default class HomeScreen extends Component {
           onSwipedLeft={() => this.onSwiped('left')}
           onSwipedRight={() => this.onSwiped('right')}
           onSwipedTop={() => this.onSwiped('top')}
-          onSwipedBottom={() => this.onSwiped('bottom')}
-          //onTapCard={this.swipeLeft}
-          cards={this.state.cards}
+          // onSwipedBottom={() => this.onSwiped('bottom')}
+          backgroundColor= 'transparent'
+          // onTapCard={this.swipeLeft}
+          cards={this.state.user}
           cardIndex={this.state.cardIndex}
           cardVerticalMargin={80}
+          renderCard={this.renderCard}
           onSwipedAll={this.onSwipedAllCards}
           stackSize={3}
           stackSeparation={15}
@@ -183,7 +173,6 @@ export default class HomeScreen extends Component {
           animateCardOpacity
           swipeBackCard
         >
-          {/* <Button onPress={() => this.swiper.swipeBack()} title='Swipe Back' /> */}
         </Swiper>
       </View>
     )
