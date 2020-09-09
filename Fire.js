@@ -44,7 +44,7 @@ class Fire {
             await firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
 
             let db = this.firestore.collection("users").doc(this.uid)
-            
+
             db.set({
                 name: user.name,
                 email: user.email,

@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import Swiper from 'react-native-deck-swiper'
 import { Button, StyleSheet, Text, View, Image, ImageBackground, Platform} from 'react-native'
 import Fire from '../Fire'
-import firebase from "firebase"
-import { debug } from 'react-native-reanimated'
-
+//import firestore from '@react-native-firebase/firestore'
+import firebase, { firestore } from "firebase"
 
 //REWRITE THIS IN YOUR OWN WAY
 function * range (start, end) {
@@ -15,34 +14,55 @@ function * range (start, end) {
 
 
 export default class HomeScreen extends Component {
-  // state = {
-  //   user: {},
-  //   cards: [...range(1, 50)],
-  //   swipedAllCards: false,
-  //   swipeDirection: '',
-  //   cardIndex: 0
-  // };
+
   componentDidMount(){
-    const user = this.props.uid || Fire.shared.uid
+    //useruid is the current users uid
+    const useruid = this.props.uid || Fire.shared.uid
+    var cardNum = 0;
+
     this.unsubscribe = Fire.shared.firestore
     .collection("users")
-    .doc(user)
+    .doc('TDq1YYd7ePaTWbLzTb9i5qJw09D3')
     .onSnapshot(doc => {
         this.setState({user: doc.data()});
     });
+
+    //Correct step forward! So close!
+    // firestore()
+    //   .collection('users')
+    //   .get()
+    //   .then(querySnapshot => {
+    //     //console.log('Total users: ', querySnapshot.size);
+
+        
+    //     querySnapshot.forEach(documentSnapshot => {
+    //       //console.log(documentSnapshot.data());
+          
+    //       // console.log('User ID: ',  documentSnapshot.id, 'User Data: ', documentSnapshot.data())
+    //       this.setState({user: documentSnapshot.data(), cards: cardNum})
+    //       console.log(cardNum)
+    //       cardNum++;
+
+    //     })
+    //   })
   }
 
-  unsubscribe = null;
+  //NEED TO ACCESS AND POPULATE ALL OTHER USERS
+  //ALSO NEED A NEW DEFAULT EMPTY / LOADING IMAGE
+
+  //Look back at this
+
+  //unsubscribe = null;
   
-  
-  componentWillUnmount() {
-      this.unsubscribe();
-  }
+  // componentWillUnmount() {
+  //     this.unsubscribe();
+  // }
 
   constructor (props) {
     super(props)
     this.state = {
       user: {
+        
       },
       cards: [...range(1, 50)],
       swipedAllCards: false,
@@ -120,8 +140,8 @@ export default class HomeScreen extends Component {
               title: 'NOPE',
               style: {
                 label: {
-                  backgroundColor: 'black',
-                  borderColor: 'black',
+                  backgroundColor: '#fa2549',
+                  borderColor: '#fa2549',
                   color: 'white',
                   borderWidth: 1
                 },
@@ -138,8 +158,8 @@ export default class HomeScreen extends Component {
               title: 'LIKE',
               style: {
                 label: {
-                  backgroundColor: 'black',
-                  borderColor: 'black',
+                  backgroundColor: '#00d589',
+                  borderColor: '#00d589',
                   color: 'white',
                   borderWidth: 1
                 },
@@ -156,8 +176,8 @@ export default class HomeScreen extends Component {
               title: 'SUPER LIKE',
               style: {
                 label: {
-                  backgroundColor: 'black',
-                  borderColor: 'black',
+                  backgroundColor: '#00aeff',
+                  borderColor: '#00aeff',
                   color: 'white',
                   borderWidth: 1
                 },

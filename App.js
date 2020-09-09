@@ -21,8 +21,7 @@ import { Image } from 'react-native'
 
 const Icon = createIconSetFromIcoMoon(icoMoonConfig, 'Logo', './assets/icons/icomoon.ttf');
 
-
-//REWORK HOW PROFILE IMAGES ARE COLLECTED (Rename it from avatar to profile images)
+//REWORK HOW PROFILE IMAGES ARE COLLECTED (Rename it from avatar to profile)
 const AppTabNavigator = createBottomTabNavigator(
   {
       Profile: {
