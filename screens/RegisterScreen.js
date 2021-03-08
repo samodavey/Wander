@@ -5,7 +5,7 @@ import Fire from '../Fire'
 import * as firebase from "firebase";
 import UserPermissions from '../utilities/UserPermissions';
 import * as ImagePicker from 'expo-image-picker';
-import { Dropdown } from 'react-native-material-dropdown';
+import { Dropdown } from 'react-native-material-dropdown-v2';
 
 
 //NEED TO IMPLEMENT GENDER, TERMS & CONDITIONS
