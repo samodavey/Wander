@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, LayoutAnimation, Dimensions, ImageBackground } from 'react-native';
+import styles from "../components/styles/style.js"
+import { Text, View, TextInput, TouchableOpacity, Image, StatusBar, LayoutAnimation, Dimensions, ImageBackground } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import GradientButton from 'react-native-gradient-buttons';
 import * as firebase from 'firebase'
@@ -41,13 +42,13 @@ export default class LoginScreen extends React.Component{
         source={require("../assets/transparent-logo.png")} 
         style={{flex: 1, width: 250, resizeMode: 'contain', bottom: 50, alignSelf: 'center'}}>
         </Image>
-        <Text style={styles.greeting}>{'Hello again.\nWelcome Back.'}</Text>
+        {/* <Text style={styles.greeting}>{'Hello again.\nWelcome Back.'}</Text> */}
 
         <View style={styles.errorMessage}>
           {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
         </View>
 
-        <View style={styles.form}>
+        <View style={styles.loginForm}>
           <View>
             <Text style={styles.inputTitle}>Email Address</Text>
             <Ionicons 
@@ -88,7 +89,7 @@ export default class LoginScreen extends React.Component{
         </TouchableOpacity>
 
         <TouchableOpacity
-        style={{alignSelf: "center", bottom: 32}}
+        style={styles.loginText}
         onPress={() => this.props.navigation.navigate("Register")}>
           <Text style={{color: "#FFF", fontSize: 13}}>
             New to Wander? <Text style={{fontWeight: "500", color: "#00d589"}}>Sign Up</Text>
@@ -100,62 +101,3 @@ export default class LoginScreen extends React.Component{
     );
   }
 }
-
-
-const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)'
-  },
-  greeting:{
-    bottom: 100,
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#FFF",
-    textAlign: "center"
-  },
-  errorMessage:{
-    height: 72,
-    alignItems: "center",
-    justifyContent: "center",
-    marginHorizontal: 30
-  },
-  error:{
-    color: "#00d589",
-    fontSize: 13,
-    fontWeight: "600",
-    textAlign: "center"
-  },
-  form:{
-    bottom: 100,
-    marginHorizontal: 30
-  },
-  inputTitle:{
-    color:"#FFF",
-    fontSize: 10,
-    textTransform: "uppercase"
-  },
-  input:{
-    borderBottomColor: "#8A8F9E",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    height: 40,
-    width: WIDTH - 55,
-    paddingLeft: 35,
-    fontSize: 15,
-    color: "#FFF"
-  },
-  inputIcon:{
-    position: 'absolute',
-    top: 15
-  },
-  button:{
-    marginHorizontal: 30,
-    bottom: 50,
-    backgroundColor: "#00d589",
-    borderRadius: 15,
-    height: 52,
-    alignItems: "center",
-    justifyContent: "center"
-  }
-
-});

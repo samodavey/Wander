@@ -3598,6 +3598,11 @@
     "parse-node-version" "^1.0.0"
     "time-stamp" "^1.0.0"
 
+"fast-base64-decode@^1.0.0":
+  "integrity" "sha512-qwaScUgUGBYeDNRnbc/KyllVU88Jk1pRHPStuF/lO7B0/RTRLj7U0lkdTAutlBblY08rwZDff6tNU9cjv6j//Q=="
+  "resolved" "https://registry.npmjs.org/fast-base64-decode/-/fast-base64-decode-1.0.0.tgz"
+  "version" "1.0.0"
+
 "fast-text-encoding@^1.0.0":
   "integrity" "sha512-dtm4QZH9nZtcDt8qJiOH9fcQd1NAgi+K1O2DbE6GG1PPCK/BWfOH3idCTRQ4ImXRUOyopDEgDEnVEE7Y/2Wrig=="
   "resolved" "https://registry.npmjs.org/fast-text-encoding/-/fast-text-encoding-1.0.3.tgz"
@@ -5970,6 +5975,14 @@
   "resolved" "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
   "version" "3.0.4"
 
+"react-native-card-stack-swiper@^1.2.5":
+  "integrity" "sha512-Z9hWblgHTU4K3YAjbIpjC2bBAc6QpEzC4FKqY2RsX0Zd9qD4UYadKXYoUjfbYGhvbDdYuTWkGE8i8lra3bKmBw=="
+  "resolved" "https://registry.npmjs.org/react-native-card-stack-swiper/-/react-native-card-stack-swiper-1.2.5.tgz"
+  "version" "1.2.5"
+  dependencies:
+    "prop-types" "15.5.10"
+    "react-lifecycles-compat" "^3.0.4"
+
 "react-native-deck-swiper@^2.0.5":
   "integrity" "sha512-PRDsdgAYUogMMwPWChEL/XsEpSob8CFNd9ThsvoyMV2lXd2bR4VZsHSuyVgXvqiHspGb3modbvogBpiSOZ3oHQ=="
   "resolved" "https://registry.npmjs.org/react-native-deck-swiper/-/react-native-deck-swiper-2.0.5.tgz"
@@ -5987,6 +6000,13 @@
     "hoist-non-react-statics" "^3.3.0"
     "invariant" "^2.2.4"
     "prop-types" "^15.7.2"
+
+"react-native-get-random-values@^1.6.0":
+  "integrity" "sha512-sPTRTJk4bpuZeTBf6d7DldQGAOCi0GZh5NxzNI3eHXzxwHbNkV13Q22TehiSb3bsaVqwLC4UAa6QvYIucyyc+A=="
+  "resolved" "https://registry.npmjs.org/react-native-get-random-values/-/react-native-get-random-values-1.6.0.tgz"
+  "version" "1.6.0"
+  dependencies:
+    "fast-base64-decode" "^1.0.0"
 
 "react-native-gradient-buttons@^2.0.2":
   "integrity" "sha512-XAuyLXSZGZSmFD7stLkoaKVUH6EY6QLU2pSp60vDXafu0VKkVUXH4tdooaYis8o2Zx7KyM22u1w3C3iC5oTduw=="
@@ -6099,7 +6119,7 @@
     "prop-types" "^15.6.0"
     "react-timer-mixin" "^0.13.4"
 
-"react-native@*", "react-native@^0.49.1", "react-native@^0.63.4", "react-native@>= 0.55.x", "react-native@>=0.42.0", "react-native@>=0.57", "react-native@>=0.62.0-rc.0 <0.64.0":
+"react-native@*", "react-native@^0.49.1", "react-native@^0.63.4", "react-native@>= 0.55.x", "react-native@>=0.42.0", "react-native@>=0.56", "react-native@>=0.57", "react-native@>=0.62.0-rc.0 <0.64.0":
   "integrity" "sha512-I4kM8kYO2mWEYUFITMcpRulcy4/jd+j9T6PbIzR0FuMcz/xwd+JwHoLPa1HmCesvR1RDOw9o4D+OFLwuXXfmGw=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.63.4.tgz"
   "version" "0.63.4"
